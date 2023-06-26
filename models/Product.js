@@ -35,7 +35,7 @@ Product.init(
       },
     },
     category_id: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
