@@ -2,16 +2,16 @@ const { Category } = require('../models');
 
 const categorydata = [
   {
-    name: 'Sports',
+    catagory_name: 'Sports',
   },
   {
-    name: 'Electronics',
+    catagory_name: 'Electronics',
   },
   {
-    name: 'Clothes',
+    catagory_name: 'Clothes',
   },
   {
-    name: 'Cars',
+    catagory_name: 'Cars',
   },
 ];
 

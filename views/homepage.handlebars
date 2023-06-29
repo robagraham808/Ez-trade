@@ -84,17 +84,17 @@
             <div class="item">
                 <div class="items-short-description">
                     <div class="item-image">
-                        <div class="image-placeholder"></div>
+                        <div class="image-placeholder">
+                            <img width="""" src="{{this.image}}">
+                        </div>
                     </div>
                     <div class="item-description">
-                        <h2>Item</h2>
+                        <h2>{{this.product_name}}</h2>
                         <div class="location">
                             <img src="/images/location-icon.png" height="20px">
-                            <p>Dallas, Texas</p>
+                            <p>{{this.location_city}}, {{this.location_state}}</p>
                         </div>
-                        <p>this is a brief description of the item. just a quick overview but more information is
-                            available
-                            if you click more info.</p>
+                        <p>{{this.shortDescription}}</p>
                         <button class="more-info">More info</button>
                         <button class="add-to-cart hide">Add To Cart</button>
                     </div>
@@ -104,15 +104,15 @@
                     <div class="seller-contact-info">
                         <div class="seller-info">
                             <img src="/images/user-icon-empty.png" width="25px" height="25px">
-                            <p class="seller-profile-name">profile name</p>
+                            <p class="seller-profile-name">{{this.user.name}}</p>
                         </div>
                         <div class="seller-info">
                             <img src="/images/email-icon-2.png" height="25px">
-                            <p class="seller-email-address">sellers email address</p>
+                            <p class="seller-email-address">{{this.user.email}}</p>
                         </div>
                         <div class="seller-info">
                             <img src="/images/phone-icon-2.png" height="25px">
-                            <p class="seller-phone-number">sellers phone number</p>
+                            <p class="seller-phone-number">{{this.user.phone}}</p>
                         </div>
                     </div>
                 </div>

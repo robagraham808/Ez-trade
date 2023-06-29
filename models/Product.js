@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Category = require("./Category");
 
 class Product extends Model {}
 
@@ -11,7 +12,7 @@ Product.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    product_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -34,6 +35,15 @@ Product.init(
         isUrl: true,
       },
     },
+    location_city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    location_state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -55,6 +65,7 @@ Product.init(
   },
   {
     sequelize,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'product',
