@@ -56,7 +56,7 @@ p {
 .button-icon {
     width: 20px;
     height: 20px;
-    background-image: url(/public/images/newsearchicon.png);
+    background-image: url(/images/newsearchicon.png);
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -96,7 +96,7 @@ p {
 .shopping-cart-icon {
     height: 40px;
     width: 45px;
-    background-image: url(/public/images/shopping-cart.png);
+    background-image: url(/images/shopping-cart.png);
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -168,7 +168,7 @@ footer {
 
 /*Homepage specifically*/
 #homepage-graphic {
-    background-image: url(/public/images/ecom-graphic-3.jpg);
+    background-image: url(/images/ecom-graphic-3.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
@@ -320,7 +320,7 @@ footer {
 }
 
 .login-body-image {
-    background-image: url(/public/images/login-image.png);
+    background-image: url(/images/login-image.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 50%;
@@ -629,7 +629,7 @@ footer {
 }
 
 .remove-from-cart-icon {
-    background-image: url(/public/images/remove-from-car-icon.png);
+    background-image: url(/images/remove-from-car-icon.png);
     width: 20px;
     height: 18px;
     background-repeat: no-repeat;
