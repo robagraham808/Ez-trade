@@ -4,6 +4,8 @@ const userdata = [
   {
     name: 'Corey McKenzie',
     email: 'corey.mckenzie@gmail.com',
+    phone: 200,
+    password: 'password12345'
   },
 ];
 

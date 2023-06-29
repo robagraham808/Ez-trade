@@ -1,15 +1,16 @@
 const router = require ('express').Router();
-const { Product, User } = require('../models');
+const { Product, User, Category } = require('../models');
 const withAuth = require ('../utils/auth');
 
 router.get('/', async (req,res) => {
     try {
-        const productDb = await Product.findAll({});
-
-        const userDb = await User.findAll({
-
+        const productDb = await Product.findAll({
+            include: [{ model: Category }, { model: User }],        
         });
-
+        const userDb = await User.findAll({
+            include: [{ model: Product}],
+        });
+      
         const users = userDb.map((user) => user.get({ plain:true }));
 
         const products = productDb.map((product) => product.get({ plain: true }));
