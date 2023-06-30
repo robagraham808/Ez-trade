@@ -1,34 +1,35 @@
 var moreInfoButton = document.querySelectorAll('.more-info');
 var exitButton = document.querySelectorAll('.x-button');
-for (i = 0; i < moreInfoButton.length; i++) {
-    moreInfoButton[i].addEventListener("click", function () {
-        var moreContent = this.closest(".item").children[1];
+
+
+var expandButtons = document.querySelectorAll('.expand-icon');
+var exitButtons = document.querySelectorAll('.x-button');
+expandButtons.forEach(function (expandButton) {
+    expandButton.addEventListener("click", function () {
         var mainParent = this.closest(".item");
-        var exitButton = this.closest(".item").children[2];
-        var addToCart = this.closest(".item-description").children[3];
+        var moreContent = mainParent.querySelector('.full-description');
+        var exitButton = mainParent.querySelector('.x-button');
+
         this.classList.add('hide');
-        addToCart.classList.remove('hide');
         moreContent.classList.remove('hide');
         mainParent.classList.add('stretch');
         exitButton.classList.remove('hide');
-
     });
-}
+});
 
-for (i = 0; i < exitButton.length; i++) {
-    exitButton[i].addEventListener("click", function () {
-        var fullDescription = this.closest(".item").children[1];
+
+exitButtons.forEach(function (exitButton) {
+    exitButton.addEventListener("click", function () {
         var mainParent = this.closest(".item");
-        var moreInfoButton = this.closest(".item").querySelector('.more-info');
-        var addToCartButton = this.closest(".item").querySelector('.add-to-cart');
+        var expandButton = mainParent.querySelector('.expand-icon');
+        var moreContent = mainParent.querySelector('.full-description');
 
-        moreInfoButton.classList.remove('hide');
-        addToCartButton.classList.add('hide');
-        this.classList.add('hide');
-        fullDescription.classList.add('hide');
+        expandButton.classList.remove('hide');
+        moreContent.classList.add('hide');
         mainParent.classList.remove('stretch');
+        this.classList.add('hide');
     });
-}
+});
 
 var hamburgerMenu = document.querySelectorAll('.hamburger-menu');
 
@@ -54,3 +55,60 @@ for (i = 0; i < exitMenuBtn.length; i++) {
         navMenuLinks.classList.add('hide');
     });
 }
+
+var logInBtn = document.querySelectorAll('.log-In-Btn');
+
+for (i=0; i < logInBtn.length; i++) {
+    logInBtn[i].addEventListener("click",function () {
+        var logInBtn = this.closest('.item');
+        var expandButton = mainParent.querySelector ('.expand-icon');
+        var moreContent = mainParent.querySelector('.full-description');
+        exitButton.classList.remove('hide');
+        navMenuLinks.classList.remove('hide');
+     });
+}
+ 
+// var categoryLinks = document.querySelectorAll('.category-links');
+
+// for (i=0; i < categoryLinks; i++) {
+//     category[i].addEventListener("click",function () {
+//        var exitButton = this.closest(".mobile-nav").children[3];
+//        var navMenuLinks = this.closest(".mobile-nav-container").children[1];
+//        this.classList.add('hide');
+//        exitButton.classList.remove('hide');
+//        navMenuLinks.classList.remove('hide');
+//     });
+// }
+
+var searchButtons = document.querySelectorAll('.search-button');
+
+searchButtons.forEach( function(searchButton) {
+    searchButton.addEventListener("click", function() {
+        var searchInput = this.parent.querySelector('.search-bar');
+        var userSearch = searchInput.value;
+
+    });
+})
+
+
+// const getSearchResults = () =>
+//   fetch('/api/', {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+
+
+const categoryLinks = document.querySelector('.category-links');
+// Attach a click event listener to the category links ul element
+categoryLinks.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent the default behavior of the anchor tag
+
+  if (event.target.tagName === 'li') {
+    const categoryId = event.target.dataset.categoryId; // Assuming you have assigned a data attribute "data-category-id" to the category links
+
+    // Redirect the user to the search results page with the category ID as a query parameter
+    window.location.href = '/searchresults?category=' + categoryId;
+  }
+});
