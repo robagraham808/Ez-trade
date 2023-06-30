@@ -10,12 +10,17 @@
             <div class="login-body-form">
                 <div class="main-form">
                     <h1>Create an Account</h1>
-                    <form>
-                        <input class="username" type="text" name="username" placeholder="enter your username or email">
-                        <input class="first-name" type="text" name="first-name" placeholder="enter your first name">
-                        <input class="last-name" type="text" name="last-name" placeholder="enter your last name">
-                        <input class="password" type="text" name="password" placeholder="enter a password">
-                        <input class="confirm-password" type="text" name="password" placeholder="confirm password">
+                    <form class="signup-form">
+                        {{!-- email --}}
+                        <input id="email-signup"class="username" type="text" name="username" placeholder="enter your username or email">
+                        {{!-- first name --}}
+                        <input id="first-name-signup" class="first-name" type="text" name="first-name" placeholder="enter your first name">
+                        {{!-- last name --}}
+                        <input id="last-name-signup" class="last-name" type="text" name="last-name" placeholder="enter your last name">
+                        {{!-- password --}}
+                        <input id="password-signup" class="password" type="text" name="password" placeholder="enter a password">
+                        {{!-- confirm password --}}
+                        <input id="password-confirm" class="confirm-password" type="text" name="password" placeholder="confirm password">
                         <button type="submit" class="login-button">Log In</button>
                         <P>Already have an account? Log in <a href="#">Here</a>.</P>
                     </form>

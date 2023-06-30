@@ -10,11 +10,13 @@
             <div class="login-body-form">
                 <div class="main-form">
                     <h1>login to your account</h1>
-                    <form>
-                        <input class="username" type="text" name="username" placeholder="enter your username or email">
-                        <input class="password" type="text" name="password" placeholder="enter your password">
+                    <form class="login-form">
+                        {{!-- email --}}
+                        <input id="email-login" class="username" type="text" name="username" placeholder="enter your username or email">
+                        {{!-- password --}}
+                        <input id="password-login" class="password" type="text" name="password" placeholder="enter your password">
                         <button type="submit" class="login-button">Log In</button>
-                        <P>Don't have an account? Create one <a href="#">Here</a>.</P>
+                        <P>Don't have an account? Create one <a href="/api/users/sign-up">Here</a>.</P>
                     </form>
                 </div>
             </div>
@@ -33,3 +35,5 @@
             </div>
         </div>
     </footer>
+
+    <script src="/js/login.js"></script>

@@ -8,28 +8,33 @@
                     <div class="button-icon"></div>
                 </button>
             </div>
-            <div class="profile-icon"></div>
+            <div class="profile-icon">
+                {{#if logged_in}}
+                <a href="/profile"></a>
+                {{else}}
+                <a href="/login"></a>
+                {{/if}}
+            </div>
             <div class="shopping-cart-icon">
                 <p class="cart-counter">0</p>
             </div>
         </div>
         <div class="header-lower">
             <ul class="category-links">
-                <li><a href="#">Electronics</a></li>
-                <li><a href="#">Books</a></li>
-                <li><a href="#">Gifts</a></li>
-                <li><a href="#">Fashion</a></li>
-                <li><a href="#">Toys/Games</a></li>
-                <li><a href="#">Home Goods</a></li>
-                <li><a href="#">Sports Gear</a></li>
-                <li><a href="#">Hardware</a></li>
-
+               <li data-category="1">Electronics</li>
+                <li data-category="2">Books</li>
+                <li data-category="3">Gifts</li>
+                <li data-category="4">Fashion</li>
+                <li data-category="5">Toys/Games</li>
+                <li data-category="6"></li>
+                <li data-category="7">Sports Gear</li>
+                <li data-category="8">Hardware</li>
                 <li class="more"><a href="#">More</a>
-                    <ul>
-                        <li><a href="#">Automotive</a></li>
-                        <li><a href="#">Hobbies</a></li>
-                        <li><a href="#">Other</a></li>
-                        <li><a href="#">Misc</a></li>
+            <ul>
+                        <li data-category="9">Automotive</li>
+                        <li data-category="10"></li>
+                        <li data-category="11">Other</li>
+                        <li data-category="12">Misc</li>
                     </ul>
                 </li>
             </ul>
@@ -55,18 +60,18 @@
                 </div>
                 <div class="mobile-categories hide">
                     <ul class="category-links-mobile">
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Gifts</a></li>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Toys/Games</a></li>
-                        <li><a href="#">Home Goods</a></li>
-                        <li><a href="#">Sports Gear</a></li>
-                        <li><a href="#">Hardware</a></li>
-                        <li><a href="#">Automotive</a></li>
-                        <li><a href="#">Hobbies</a></li>
-                        <li><a href="#">Other</a></li>
-                        <li><a href="#">Misc</a></li>
+                        <li data-category="1">Electronics</li>
+                        <li data-category="2">Books</li>
+                        <li data-category="3">Gifts</li>
+                        <li data-category="4">Fashion</li>
+                        <li data-category="5">Toys/Games</li>
+                        <li data-category="6"></li>
+                        <li data-category="7">Sports Gear</li>
+                        <li data-category="8">Hardware</li>
+                        <li data-category="9">Automotive</li>
+                        <li data-category="10"></li>
+                        <li data-category="11">Other</li>
+                        <li data-category="12">Misc</li>
                     </ul>
                 </div>
             </div>
@@ -82,6 +87,9 @@
         <section class="items">
             {{#each products as |product|}}
             <div class="item">
+                <div class="expand-icon">
+                    <img src="/images/expand-icon.png" width="20px">
+                </div>
                 <div class="items-short-description">
                     <div class="item-image">
                         <div class="image-placeholder">
@@ -139,3 +147,5 @@
             </div>
         </div>
     </footer>
+
+    <script src="/js/index.js"></script>
