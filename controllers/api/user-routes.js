@@ -1,24 +1,25 @@
 const router = require('express').Router();
 const { User, Category, Product } = require('../../models');
 
-router.get('/sign-up', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    res.render('signup');  
+    const userDb = await User.findAll();
+
+    res.status(200).json(userDb);
+
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
-
-router.post('/sign-up', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
-    const usersDb = await User.create(req.body);
+    const userDb = await User.create(req.body);
 
     req.session.save(() => {
-      req.session.user_id = usersDb.id;
+      req.session.user_id = userDb.id;
       req.session.logged_in = true;
-
-      res.status(200).json(usersDb);
+      res.status(200).json(userDb);
     });
   } catch (err) {
     res.status(400).json(err);
@@ -27,33 +28,27 @@ router.post('/sign-up', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    console.log("444444444444444444444444444444444444444", req.body.email, req.body.password)
     const userDb = await User.findOne({ where: { email: req.body.email } });
-    console.log("22222222222222222222222222222", userDb.id);
     if (!userDb) {
       res
         .status(400)
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-    console.log('33333333333333333333333333333333333333333');
     const validPassword = await userDb.checkPassword(req.body.password);
 
-    // if (!validPassword) {
-    //   res
-    //     .status(400)
-    //     .json({ message: 'Incorrect email or password, please try again' });
-    //   return;
-    // }
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
 
-    console.log("88888888888888888888888888888", userDb.id);
     req.session.save(() => {
       req.session.user_id = userDb.id;
       req.session.logged_in = true;
-      
+      res.json({ user: userDb, message: 'You are now logged in!' });
     });
-
-    console.log(req.session.user_id);
 
   } catch (err) {
     res.status(400).json(err);

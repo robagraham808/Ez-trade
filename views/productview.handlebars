@@ -1,5 +1,4 @@
- <div class="container">
-         <header>
+  <header>
         <div class="header-top">
             <img src="/images/home-icon.png" height="35px">
             <img src="/images/ez-tradelogo.png" height="35px">
@@ -84,65 +83,52 @@
             </div>
         </div>
     </header>
-
-        <main>
-            <section class="cartview-body">
-
-                {{#each cartitems as |cartitem|}}
-                <div class="cart-item">
-                    <div class="cart-item-img">
-                        <div class="cart-image-placeholder"></div>
-                    </div>
-                    <div class="cart-item-info">
-                        <h2 class="cart-item-name">product name</h2>
-                        <h3 class="cart-item-price">60$</h3>
-                        <p class="cart-view-description">This is a brief description of the product that should be
-                            rendered when viewing a product in the cart.</p>
-                        <div class="cart-contact-info">
-                            <div class="seller-info-cartview">
-                                <img src="/images/user-icon-empty.png" width="20px" height="20px">
-                                <p class="seller-profile-name">profile name</p>
-                            </div>
-                            <div class="seller-info-cartview">
-                                <img src="/images/email-icon-2.png" height="20px">
-                                <p class="seller-email-address">seller@email.com</p>
-                            </div>
-                            <div class="seller-info-cartview">
-                                <img src="/images/phone-icon-2.png" height="20px">
-                                <p class="seller-phone-number">phone number</p>
-                            </div>
-                            <div class="seller-info-cartview">
-                                <img src="/images/location-icon.png" height="20px">
-                                <p class="cart-seller-location">Dallas, Texas</p>
-                            </div>
-                        </div>
-                        <button class="remove-from-cart">
-                            <div class="remove-from-cart-icon">
-
-                            </div>
-                            Remove
-                        </button>
-                    </div>
+    <main id="main-product">
+        <section class="item-view">
+            <div class="product-view-img">
+                <div class="product-place-holder" style="background-color: blue; width: 100%; height: 500px;">
                 </div>
-                {{/each}}
-
-                <div class="sub-total">
-                    <P id="ammount-of-items"> Subtotal 3 Items</P>
-                    <p id="total-cost">Total: $45.61</p>
-                    <button class="checkout-button">Checkout</button>
+            </div>
+            <div class="product-view-description">
+                <h2>{{this.product_name}}</h2>
+                <h3>${{this.price}}</h3>
+                <div class="productview-location">
+                    <img src="images/location-icon.png" height="20px">
+                    <p class="product-seller-location">{{this.location_city}}, {{this.location_state}}</p>
                 </div>
-            </section>
-        </main>
-    </div>
-    <footer class="cartview-footer">
+                <p>{{this.longDescription}}</p>
+                <h5 id="contact-seller">Contact Seller</h5>
+                <div class="product-seller-info">
+                    <div class="seller-info-productview">
+                        <img src="images/user-icon-empty.png" width="20px" height="20px">
+                        <p class="seller-profile-name">{{this.user.first_name}} {{this.user.last_name}}</p>
+                    </div>
+                    <div class="seller-info-productview">
+                        <img src="images/email-icon-2.png" height="20px">
+                        <p class="seller-email-address">{{this.user.email}}</p>
+                    </div>
+                    <div class="seller-info-productview">
+                        <img src="images/phone-icon-2.png" height="20px">
+                        <p class="seller-phone-number">{{this.user.phone}}</p>
+                    </div>
+
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <footer id="product-footer">
         <div class="contacts">
             <div class="contact-links">
-                <img src="/images/email-icon-footer.png" height="18px">
+                <img src="images/email-icon-footer.png" height="18px">
                 <p>eztrade@info.com</p>
             </div>
             <div class="contact-links">
-                <img src="/images/phone-icon-footer.png" height="18px">
+                <img src="images/phone-icon-footer.png" height="18px">
                 <p>1-800-545-3954</p>
             </div>
         </div>
     </footer>
+
+    <script src="index.js"></script>

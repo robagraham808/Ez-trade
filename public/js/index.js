@@ -54,39 +54,42 @@ for (i = 0; i < exitMenuBtn.length; i++) {
   });
 }
 
-var logInBtn = document.querySelectorAll('.log-In-Btn');
+//the login-button class was just for styling purposes. I gave the login and signup button each their own id since they're unique and theres not multiple of them
+// var logInBtn = document.querySelector('#login');
+// var signUpBtn = document.querySelector('#signup');
 
-for (i = 0; i < logInBtn.length; i++) {
-  logInBtn[i].addEventListener('click', function () {
-    var logInBtn = this.closest('.item');
-    var expandButton = mainParent.querySelector('.expand-icon');
-    var moreContent = mainParent.querySelector('.full-description');
-    exitButton.classList.remove('hide');
-    navMenuLinks.classList.remove('hide');
-  });
-}
+// logInBtn.addEventListener("click", userLogin);
+// signUpBtn.addEventListener("click", createAccount);
 
-var registerBtn = document.querySelectorAll('.register-Btn');
+// async function userLogin() {
 
-for (i = 0; i < registerBtn.length; i++) {
-  registerBtn[i].addEventListener('click', function () {
-    var registerBtn = this.closest('.item');
-    var expandButton = mainParent.querySelector('.expand-icon');
-    var moreContent = mainParent.querySelector('.full-description');
-    exitButton.classList.remove('hide');
-    navMenuLinks.classList.remove('hide');
-  });
-}
+// }
 
-var sellBtn = document.querySelectorAll('.sell-btn');
+// function createAccount() {
 
-sellBtn[i].addEventListener('click', function () {
-  var sellBtn = this.closest('item');
-  var expandButton = mainParent.querySelector('.expand-icon');
-  var moreContent = mainParent.querySelector('.full-description');
-  exitButton.classList.remove('hide');
-  navMenuLinks.classList.remove('hide');
-});
+// }
+
+// var registerBtn = document.querySelectorAll('.register-Btn');
+
+// for (i = 0; i < registerBtn.length; i++) {
+//   registerBtn[i].addEventListener('click', function () {
+//     var registerBtn = this.closest('.item');
+//     var expandButton = mainParent.querySelector('.expand-icon');
+//     var moreContent = mainParent.querySelector('.full-description');
+//     exitButton.classList.remove('hide');
+//     navMenuLinks.classList.remove('hide');
+//   });
+// }
+
+// var sellBtn = document.querySelectorAll('.sell-btn');
+
+// sellBtn[i].addEventListener('click', function () {
+//   var sellBtn = this.closest('item');
+//   var expandButton = mainParent.querySelector('.expand-icon');
+//   var moreContent = mainParent.querySelector('.full-description');
+//   exitButton.classList.remove('hide');
+//   navMenuLinks.classList.remove('hide');
+// });
 
 var searchButtons = document.querySelectorAll('.search-button');
 
@@ -107,6 +110,37 @@ searchButtons.forEach(function (searchButton) {
   });
 });
 
+
+//shoping cart functions
+//this is responsible for the number inside of the cart icon
+let itemCount = 0;
+var itemCountLabel = document.querySelectorAll('.cart-counter');
+
+itemCountLabel.innerText = itemCount;
+
+var addToCartButtons = document.querySelectorAll('.add-to-cart');
+var deleteFromCartButtons = document.querySelectorAll('.remove-from-cart');
+
+addToCartButtons.forEach(function (addToCartButton) {
+  addToCartButton.addEventListener("click", addItemToCart);
+});
+
+deleteFromCartButtons.forEach(function (deleteFromCartButton) {
+  deleteFromCartButton.addEventListener("click", deleteItemFromCart);
+});
+
+function addItemToCart() {
+  //probably will work with stripe
+  itemCount++;
+}
+
+function deleteItemFromCart() {
+  if (itemCount > 0) {
+    itemCount--;
+  }
+
+}
+
 // const getSearchResults = () =>
 //   fetch('/api/', {
 //     method: 'GET',
@@ -115,15 +149,25 @@ searchButtons.forEach(function (searchButton) {
 //     },
 //   });
 
-const categoryLinks = document.querySelector('.category-links');
-// Attach a click event listener to the category links ul element
-categoryLinks.addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent the default behavior of the anchor tag
 
-  if (event.target.tagName === 'li') {
-    const categoryId = event.target.dataset.categoryId; // Assuming you have assigned a data attribute "data-category-id" to the category links
+const categories = document.querySelectorAll('.categories');
 
-    // Redirect the user to the search results page with the category ID as a query parameter
-    window.location.href = '/searchresults?category=' + categoryId;
-  }
-});
+for (let i = 0; i < categories.length; i++) {
+  //var categoryId = categories[i].dataset.category;
+  categories[i].addEventListener("click", function () {
+    var categoryId = this.dataset.category;
+    fetch(`/searchresults/${categoryId}`)
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response data
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error(error);
+      });
+  });
+}
+
+//add to cart
+

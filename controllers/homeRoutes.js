@@ -15,10 +15,7 @@ router.get('/', async (req,res) => {
 
         const products = productDb.map((product) => product.get({ plain: true }));
 
-        console.log("111111111111111111", req.session);
-
         res.render('homepage', {
-            users,
             products,
             logged_in: req.session.logged_in
         });
@@ -46,6 +43,42 @@ router.get('/profile', withAuth, async (req, res) => {
     }
   });
 
+router.get('/product/:id', async (req,res) => {
+  try {
+    const productDb = await Product.findByPk(req.params.id, {
+      include: [{ model: Category }, { model: User }],        
+  });
+
+  const product = productDb.get({ plain:true });
+
+  res.render('productview', {
+    ...product,
+    logged_in: req.session.logged_in
+  });
+
+  }catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/category/:category.id', async (req,res) => {
+  try {
+    const productDb = await Product.findByPk(req.params.category.id, {
+      include: [{ model: Category }, { model: User }],        
+  });
+
+  const product = productDb.get({ plain:true });
+
+  res.render('searchresults', {
+    ...product,
+    logged_in: req.session.logged_in
+  });
+
+  }catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
@@ -54,5 +87,13 @@ router.get('/login', (req, res) => {
     
     res.render('login');
 })
+
+router.get('/signup', async (req, res) => {
+  try {
+    res.render('signup');  
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

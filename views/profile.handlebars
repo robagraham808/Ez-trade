@@ -1,4 +1,85 @@
-<div>
-    <p>profile page</p>
-</div>
+  <header>
+        <div class="header-top">
+            <img src="/images/home-icon.png" height="35px">
+            <img src="/images/ez-tradelogo.png" height="35px">
+            <div class="custom-searchbar">
+                <input class="search-bar" type="text" name="search" placeholder="search">
+                <button class="search-button">
+                    <div class="button-icon"></div>
+                </button>
+            </div>
+            {{!-- <div class="profile-icon">
+                {{#if logged_in}}
+                <a href="/profile"></a>
+                {{else}}
+                <a href="/login"></a>
+                {{/if}}
+            </div> --}}
+            {{#if logged_in}}
+            <a class="profile-icon" href="/profile"></a>
+            {{else}}
+            <a class="profile-icon" href="/login"></a>
+            {{/if}}
 
+            <div class="shopping-cart-icon">
+                <p class="cart-counter">0</p>
+            </div>
+        </div>
+        <div class="header-lower">
+            <ul class="category-links">
+               <li class="categories" data-category="1">Electronics</li>
+                <li class="categories" data-category="2">Books</li>
+                <li class="categories" data-category="3">Gifts</li>
+                <li class="categories" data-category="4">Fashion</li>
+                <li class="categories" data-category="5">Toys/Games</li>
+                <li class="categories" data-category="6">Home Goods</li>
+                <li class="categories" data-category="7">Sports Gear</li>
+                <li class="categories" data-category="8">Shoes</li>
+                <li  class="more">More
+            <ul>
+                        <li class="categories" data-category="9">Automotive</li>
+                        <li class="categories" data-category="10">Hardware / tools</li>
+                        <li class="categories" data-category="11">Other</li>
+                        <li class="categories" data-category="12">Misc</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="mobile-nav-container">
+                <div class="mobile-nav">
+                    <div class="custom-searchbar-mobile">
+                        <input class="search-bar" type="text" name="search" placeholder="search">
+                        <button class="search-button">
+                            <div class="button-icon"></div>
+                        </button>
+                    </div>
+                    <h2 class="category-label">Categories</h2>
+                    <div class="hamburger-menu">
+                        <div class="hamburger-bar"></div>
+                        <div class="hamburger-bar"></div>
+                        <div class="hamburger-bar"></div>
+                    </div>
+                    <div class="exit-menu-btn hide">
+                        <div class="ext-mnu-bar1"></div>
+                        <div class="ext-mnu-bar2"></div>
+                    </div>
+
+                </div>
+                <div class="mobile-categories hide">
+                    <ul class="category-links-mobile">
+                        <li class="categories" data-category="1">Electronics</li>
+                        <li class="categories" data-category="2">Books</li>
+                        <li class="categories" data-category="3">Gifts</li>
+                        <li class="categories" data-category="4">Fashion</li>
+                        <li class="categories" data-category="5">Toys/Games</li>
+                        <li class="categories" data-category="6"></li>
+                        <li class="categories" data-category="7">Sports Gear</li>
+                        <li class="categories" data-category="8">Hardware</li>
+                        <li class="categories" data-category="9">Automotive</li>
+                        <li class="categories" data-category="10"></li>
+                        <li class="categories" data-category="11">Other</li>
+                        <li class="categories" data-category="12">Misc</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
