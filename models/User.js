@@ -35,7 +35,7 @@ User.init(
     },
     phone: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     password: {
       type: DataTypes.STRING,

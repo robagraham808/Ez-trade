@@ -1,21 +1,31 @@
 const { Product, Category } = require('../../models');
 
-router.get('/searchresults', async (req, res) => {
-  const { Category } = req.query;
+
+router.get('/searchresults/:id', async (req, res) => {
+  const { categoryId } = req.query;
 
   try {
+    const categoryDb = await Category.findByPk(categoryId);
+
+    const category = categoryDb.get({ plain:true});
+
+
+    if (!category) {
+      res.status(404).json({ message: 'No category found with this ID!' });
+      return;
+    }
+
     const products = await Product.findAll({
-      include: {
-        model: Category,
-        where: {
-          id: category
-        }
-      }
+      where: { categoryId },
     });
 
-    res.render('searchresults', { products }); // Render the search results view with the found products
+    const product = products.get({ plain:true});
+
+
+    res.render('searchresults', { category, product });
   } catch (error) {
-    console.error('Error occurred during search:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json(error);
   }
 });
+
+module.exports = router;
