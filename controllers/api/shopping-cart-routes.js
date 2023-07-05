@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Category, Product, ShoppingCart } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/cart', async (req, res) => {
   try {
     const shoppingCarts = await ShoppingCart.findAll({
       include: [{ model: Product }, { model: User }],
@@ -13,11 +13,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/cart', withAuth, async (req, res) => {
   try {
     const newCart = await ShoppingCart.create({
       ...req.body,
-      user_id: req.session.user_id,
+      buyer_id: req.session.user_id,
     });
     res.status(200).json(newCart);
   } catch (err) {
@@ -25,7 +25,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/cart/:id', withAuth, async (req, res) => {
   try {
     const newCart = await ShoppingCart.destroy({
       where: {
