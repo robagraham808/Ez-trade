@@ -1,13 +1,9 @@
+async function getCartItems() {
+  const items = await fetch('/api/cart', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  console.log(items);
+}
 
-
-const checkout = document.querySelector('.checkout-button');
-checkout.addEventListener("click", checkoutFunction)
-
-async function checkoutFunction() {
-    const shoppingCart = await fetch('/api/checkout', {
-        method: 'POST',
-        body: JSON.stringify({price, product_name }),
-        headers: {'Content-Type':'application/json'},
-      });
-  
-};
+getCartItems();

@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
+  console.log('/signup');
   try {
     const userDb = await User.create(req.body);
 

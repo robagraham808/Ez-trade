@@ -4,37 +4,33 @@ const withAuth = require('../../utils/auth');
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-const YOUR_DOMAIN = 'http://localhost:3006';
+const YOUR_DOMAIN = 'process.env.YOUR_DOMAIN';
 
 router.post('/', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'T-shirt',
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: req.body.items.map((item) => {
+        const storeItem = storeItems.get(item.id);
+        return {
+          price_data: {
+            currenct: 'usd',
+            product_data: {
+              name: storeItem.product_name,
+            },
+            unit_amount: storeItem.price * 100,
+            quantity: 1,
           },
-          unit_amount: 2000,
-        },
-        quantity: 2,
-      },
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'Jeans',
-          },
-          unit_amount: 9000,
-        },
-        quantity: 4,
-      },
-    ],
-    mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cart.html`,
-  });
-  res.send({ url: session.url });
+        };
+      }),
+      success_url: `${YOUR_DOMAIN}/success.html`,
+      cancel_url: `${YOUR_DOMAIN}/cart.html`,
+    });
+    res.send({ url: session.url });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
