@@ -1,4 +1,4 @@
-const { checkout } = require('../../controllers');
+//const { checkout } = require('../../controllers');
 
 var moreInfoButton = document.querySelectorAll('.more-info');
 var exitButton = document.querySelectorAll('.x-button');
@@ -157,32 +157,6 @@ function deleteItemFromCart() {
   }
 }
 
-async function checkoutCart() {
-  const items = await fetch('/api/cart', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-
-    //select all records from shoppingCart where buyer_id = current user
-    body: JSON.stringify({
-      items: [],
-    }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return res.json().then((json = Promise.reject(json)));
-      }
-    })
-    .then(({ url }) => {
-      window.location = url;
-    })
-    .catch((e) => {
-      console.error(e.error);
-    });
-}
-const checkoutButton = document.querySelector('.checkout-button');
-checkoutButton.addEventListener('click', checkoutCart);
 
 // const getSearchResults = () =>
 //   fetch('/api/', {
