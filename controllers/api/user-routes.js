@@ -6,7 +6,6 @@ router.get('/', async (req, res) => {
     const userDb = await User.findAll();
 
     res.status(200).json(userDb);
-
   } catch (err) {
     res.status(400).json(err);
   }
@@ -49,8 +48,8 @@ router.post('/login', async (req, res) => {
       req.session.logged_in = true;
       res.json({ user: userDb, message: 'You are now logged in!' });
     });
-
   } catch (err) {
+    ``;
     res.status(400).json(err);
   }
 });
