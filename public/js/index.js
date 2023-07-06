@@ -129,6 +129,8 @@ deleteFromCartButtons.forEach(function (deleteFromCartButton) {
 });
 
 async function addItemToCart() {
+  console.log('Add-item-to-cargt');
+
   //probably will work with stripe
   itemCount = itemCount + 1;
   const product_id = document.querySelector('#product-info').innerText;
@@ -136,7 +138,7 @@ async function addItemToCart() {
   const buyer_id = document.querySelector('.user-info').innerText;
 
   console.log(product_id, price, buyer_id);
-
+  console.log('Add-item-to-cart');
   const shoppingCart = await fetch('/api/cart', {
     method: 'POST',
     body: JSON.stringify({ product_id, buyer_id }),
@@ -145,16 +147,17 @@ async function addItemToCart() {
 
   console.log(shoppingCart);
 }
-
-addToCartButtons.addEventListener('click', addItemToCart);
-
+window.addEventListener('DOMContentLoaded', function () {
+  console.log('Buttonw went click!');
+  addToCartButtons.addEventListener('click', addItemToCart);
+});
 function deleteItemFromCart() {
   if (itemCount > 0) {
     itemCount = itemCount - 1;
   }
 }
 
-async function checkout() {
+async function checkoutCart() {
   const items = await fetch('/api/cart', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -179,7 +182,7 @@ async function checkout() {
     });
 }
 const checkoutButton = document.querySelector('.checkout-button');
-checkoutButton.addEventListener('click', checkout);
+checkoutButton.addEventListener('click', checkoutCart);
 
 // const getSearchResults = () =>
 //   fetch('/api/', {
