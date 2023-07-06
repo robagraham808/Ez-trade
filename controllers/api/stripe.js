@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         const storeItem = storeItems.get(item.id);
         return {
           price_data: {
-            currenct: 'usd',
+            currency: 'usd',
             product_data: {
               name: storeItem.product_name,
             },
