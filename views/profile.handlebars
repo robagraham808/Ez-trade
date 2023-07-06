@@ -1,6 +1,8 @@
   <header>
         <div class="header-top">
-            <img src="/images/home-icon.png" height="35px">
+            <a href="/">
+                <img src="/images/home-icon.png" height="35px">
+            </a>
             <img src="/images/ez-tradelogo.png" height="35px">
             <div class="custom-searchbar">
                 <input class="search-bar" type="text" name="search" placeholder="search">
@@ -21,9 +23,11 @@
             <a class="profile-icon" href="/login"></a>
             {{/if}}
 
-            <div class="shopping-cart-icon">
-                <p class="cart-counter">0</p>
-            </div>
+            <a href="/cart/{{buyer_id}}">
+                <div class="shopping-cart-icon">
+                    <p class="cart-counter">0</p>
+                </div>
+            </a>
         </div>
         <div class="header-lower">
             <ul class="category-links">

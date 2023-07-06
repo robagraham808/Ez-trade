@@ -1,3 +1,5 @@
+
+
 var moreInfoButton = document.querySelectorAll('.more-info');
 var exitButton = document.querySelectorAll('.x-button');
 
@@ -93,22 +95,22 @@ for (i = 0; i < exitMenuBtn.length; i++) {
 
 var searchButtons = document.querySelectorAll('.search-button');
 
-searchButtons.forEach(function (searchButton) {
-  searchButton.addEventListener('click', function () {
-    var searchInput = this.parent.querySelector('.search-bar');
-    var userSearch = searchInput.value;
-  });
+// searchButtons.forEach(function (searchButton) {
+//   searchButton.addEventListener('click', function () {
+//     var searchInput = this.parent.querySelector('.search-bar');
+//     var userSearch = searchInput.value;
+//   });
 
-  var helpAndContactBtn = document.querySelectorAll('.helpandcontactbtn');
+//   var helpAndContactBtn = document.querySelectorAll('.helpandcontactbtn');
 
-  helpAndContactBtn[i].addEventListener('click', function () {
-    var helpAndContactBtn = this.closest('item');
-    var expandButton = mainParent.querySelector('expand-icon');
-    var moreContent = mainParent.querySelector('full-description');
-    exitButton.classList.remove('hide');
-    navMenuLinks.classList.remove('hide');
-  });
-});
+//   helpAndContactBtn[i].addEventListener('click', function () {
+//     var helpAndContactBtn = this.closest('item');
+//     var expandButton = mainParent.querySelector('expand-icon');
+//     var moreContent = mainParent.querySelector('full-description');
+//     exitButton.classList.remove('hide');
+//     navMenuLinks.classList.remove('hide');
+//   });
+// });
 
 
 //shoping cart functions
@@ -116,27 +118,47 @@ searchButtons.forEach(function (searchButton) {
 let itemCount = 0;
 var itemCountLabel = document.querySelectorAll('.cart-counter');
 
-itemCountLabel.innerText = itemCount;
+for (let i = 0; i < itemCountLabel.length; i++ ){
+  itemCountLabel[i].innerText = itemCount;
+}
 
-var addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+var addToCartButtons = document.querySelector('.add-to-cart');
 var deleteFromCartButtons = document.querySelectorAll('.remove-from-cart');
 
-addToCartButtons.forEach(function (addToCartButton) {
-  addToCartButton.addEventListener("click", addItemToCart);
-});
+
 
 deleteFromCartButtons.forEach(function (deleteFromCartButton) {
   deleteFromCartButton.addEventListener("click", deleteItemFromCart);
 });
 
-function addItemToCart() {
+async function addItemToCart() {
+
   //probably will work with stripe
-  itemCount++;
+  itemCount = itemCount + 1;
+  const product_id = document.querySelector('#product-info').innerText;
+  const price = document.querySelector('.product-price').innerText;
+  const buyer_id = document.querySelector('.user-info').innerText;
+
+
+  console.log(product_id, price, buyer_id);
+
+  const shoppingCart = await fetch('/api/cart', {
+      method: 'POST',
+      body: JSON.stringify({product_id, buyer_id }),
+      headers: {'Content-Type':'application/json'},
+    });
+
+    console.log(shoppingCart);
+
 }
+
+addToCartButtons.addEventListener("click", addItemToCart);
+
 
 function deleteItemFromCart() {
   if (itemCount > 0) {
-    itemCount--;
+    itemCount = itemCount - 1;
   }
 
 }
@@ -150,24 +172,27 @@ function deleteItemFromCart() {
 //   });
 
 
-const categories = document.querySelectorAll('.categories');
+// const categories = document.querySelectorAll('.categories');
 
-for (let i = 0; i < categories.length; i++) {
-  //var categoryId = categories[i].dataset.category;
-  categories[i].addEventListener("click", function () {
-    var categoryId = this.dataset.category;
-    fetch(`/searchresults/${categoryId}`)
-      .then(response => response.json())
-      .then(data => {
-        // Handle the response data
-        console.log(data);
-      })
-      .catch(error => {
-        // Handle any errors
-        console.error(error);
-      });
-  });
-}
+// for (let i = 0; i < categories.length; i++) {
+//   //var categoryId = categories[i].dataset.category;
+//   categories[i].addEventListener("click", function () {
+//     var categoryId = this.dataset.category;
+//     fetch(`/searchresults/${categoryId}`)
+//       .then(response => response.json())
+//       .then(data => {
+//         // Handle the response data
+//         console.log(data);
+//       })
+//       .catch(error => {
+//         // Handle any errors
+//         console.error(error);
+//       });
+//   });
+// }
+
 
 //add to cart
+
+var shoppingCartButton = document.querySelector('.shopping-cart-icon');
 

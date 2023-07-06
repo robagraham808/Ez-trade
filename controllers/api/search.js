@@ -1,4 +1,6 @@
 const { Product, Category } = require('../../models');
+const router = require('express').Router();
+
 
 
 router.get('/searchresults/:id', async (req, res) => {

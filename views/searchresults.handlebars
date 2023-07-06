@@ -1,35 +1,74 @@
- <header>
+<header>
         <div class="header-top">
-            <img src="/public/images/home-icon.png" height="35px">
-            <img src="/public/images/ez-tradelogo.png" height="35px">
+            <a href="/">
+                <img src="/images/home-icon.png" height="35px">
+            </a>
+            <img src="/images/ez-tradelogo.png" height="35px">
             <div class="custom-searchbar">
                 <input class="search-bar" type="text" name="search" placeholder="search">
                 <button class="search-button">
                     <div class="button-icon"></div>
                 </button>
             </div>
-            <div class="profile-icon"></div>
-            <div class="shopping-cart-icon">
-                <p class="cart-counter">0</p>
-            </div>
+            {{!-- <div class="profile-icon">
+                {{#if logged_in}}
+                <a href="/profile"></a>
+                {{else}}
+                <a href="/login"></a>
+                {{/if}}
+            </div> --}}
+            {{#if logged_in}}
+            <a class="profile-icon" href="/profile"></a>
+            <button id="logout">logout</button>
+            {{else}}
+            <a class="profile-icon" href="/login"></a>
+            {{/if}}
+            <a href="/cart/{{buyer_id}}">
+                <div class="shopping-cart-icon">
+                    <p class="cart-counter">0</p>
+                </div>
+            </a>
         </div>
         <div class="header-lower">
-            <ul class="category-links">
-                <li><a href="#">Electronics</a></li>
-                <li><a href="#">Books</a></li>
-                <li><a href="#">Gifts</a></li>
-                <li><a href="#">Fashion</a></li>
-                <li><a href="#">Toys/Games</a></li>
-                <li><a href="#">Home Goods</a></li>
-                <li><a href="#">Sports Gear</a></li>
-                <li><a href="#">Hardware</a></li>
+                          
 
-                <li class="more"><a href="#">More</a>
-                    <ul>
-                        <li><a href="#">Automotive</a></li>
-                        <li><a href="#">Hobbies</a></li>
-                        <li><a href="#">Other</a></li>
-                        <li><a href="#">Misc</a></li>
+            <ul class="category-links">
+                
+               <li class="categories" data-category="1">
+                <a href="/searchresults/1">Electronics</a>
+                </li>
+                <li class="categories" data-category="2">
+                    <a href="/searchresults/2"></a>
+                </li>
+                <li class="categories" data-category="3">
+                    <a href="/searchresults/3">Gifts</a>
+                    </li>
+                <li class="categories" data-category="4">
+                    <a href="/searchresults/4">Fashion</a>
+                    </li>
+                <li class="categories" data-category="5">
+                    <a href="/searchresults/5">Toys/Games</a>
+                    </li>
+                <li class="categories" data-category="6">
+                    <a href="/searchresults/6">Home Goods</a>
+                    </li>
+                <li class="categories" data-category="7">
+                    <a href="/searchresults/7">Sports Gear</a>
+                    </li>
+                <li class="categories" data-category="8">
+                    <a href="/searchresults/8">Shoes</a>
+                    </li>
+                <li  class="more">More
+            <ul>
+                        <li class="categories" data-category="9">
+                            <a href="/searchresults/9">Automotive</a>
+                        </li>
+                        <li class="categories" data-category="10">
+                           <a href="/searchresults/10">Hardware / tools</a>
+                            </li>
+                        <li class="categories" data-category="12">
+                            <a href="/searchresults/11">Misc</a>
+                            </li>
                     </ul>
                 </li>
             </ul>
@@ -55,18 +94,39 @@
                 </div>
                 <div class="mobile-categories hide">
                     <ul class="category-links-mobile">
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Gifts</a></li>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Toys/Games</a></li>
-                        <li><a href="#">Home Goods</a></li>
-                        <li><a href="#">Sports Gear</a></li>
-                        <li><a href="#">Hardware</a></li>
-                        <li><a href="#">Automotive</a></li>
-                        <li><a href="#">Hobbies</a></li>
-                        <li><a href="#">Other</a></li>
-                        <li><a href="#">Misc</a></li>
+                        <li class="categories" data-category="1">
+                <a href="/searchresults/1">Electronics</a>
+                </li>
+                <li class="categories" data-category="2">
+                    <a href="/searchresults/2"></a>
+                </li>
+                <li class="categories" data-category="3">
+                    <a href="/searchresults/3">Gifts</a>
+                    </li>
+                <li class="categories" data-category="4">
+                    <a href="/searchresults/4">Fashion</a>
+                    </li>
+                <li class="categories" data-category="5">
+                    <a href="/searchresults/5">Toys/Games</a>
+                    </li>
+                <li class="categories" data-category="6">
+                    <a href="/searchresults/6">Home Goods</a>
+                    </li>
+                <li class="categories" data-category="7">
+                    <a href="/searchresults/7">Sports Gear</a>
+                    </li>
+                <li class="categories" data-category="8">
+                    <a href="/searchresults/8">Shoes</a>
+                    </li>
+                        <li class="categories" data-category="9">
+                            <a href="/searchresults/9">Automotive</a>
+                        </li>
+                        <li class="categories" data-category="10">
+                           <a href="/searchresults/10">Hardware / tools</a>
+                            </li>
+                        <li class="categories" data-category="12">
+                            <a href="/searchresults/11">Misc</a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -74,74 +134,74 @@
     </header>
 
 
-
-
-    <main>
-            {{#if products.length}}
-  <section class="items">
-    {{#each category as |category|}}
+<main>
+    {{#if products.length}}
+    <section class="items">
+        {{#each products as |product|}}
         <div class="item">
-                <div class="item">
-                <div class="expand-icon">
-                    <img src="/images/expand-icon.png" width="20px">
-                </div>
-                <div class="items-short-description">
-                    <div class="item-image">
-                        <div class="image-placeholder">
-                            <img width="" src="{{this.products.image}}">
-                        </div>
+            <div class="expand-icon">
+                <img src="/images/expand-icon.png" width="20px">
+            </div>
+            <div class="items-short-description">
+                <div class="item-image">
+                    <div class="image-placeholder"
+                        style="background-image: url('{{this.image}}'); width: 200px; height: 200px; background-repeat: no-repeat; background-size: cover;">
                     </div>
-                    <div class="item-description">
-                        <h2>{{this.product_name}}</h2>
-                        <div class="location">
-                            <img src="/images/location-icon.png" height="20px">
-                            <p>{{this.location_city}}, {{this.location_state}}</p>
-                        </div>
-                        <p>{{this.shortDescription}}</p>
+                </div>
+                <div class="item-description">
+                    <h2>{{this.product_name}}</h2>
+                    <div class="location">
+                        <img src="/images/location-icon.png" height="20px">
+                        <p>{{this.location_city}}, {{this.location_state}}</p>
+                    </div>
+                    <p>{{this.shortDescription}}</p>
+                    <a href="/product/{{this.id}}">
                         <button class="more-info">More info</button>
-                        <button class="add-to-cart hide">Add To Cart</button>
-                    </div>
-                </div>
-
-                <div class="full-description hide">
-                    <div class="seller-contact-info">
-                        <div class="seller-info">
-                            <img src="/images/user-icon-empty.png" width="25px" height="25px">
-                            <p class="seller-profile-name">{{this.user.name}}</p>
-                        </div>
-                        <div class="seller-info">
-                            <img src="/images/email-icon-2.png" height="25px">
-                            <p class="seller-email-address">{{this.user.email}}</p>
-                        </div>
-                        <div class="seller-info">
-                            <img src="/images/phone-icon-2.png" height="25px">
-                            <p class="seller-phone-number">{{this.user.phone}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="x-button hide">
-                    <div class="bar-1"></div>
-                    <div class="bar-2"></div>
+                    </a>
+                    <button class="add-to-cart hide">Add To Cart</button>
                 </div>
             </div>
-    {{/each}}
-  </section>
-{{else}}
-  <p>No products found.</p>
-{{/if}}
 
-        </section>
-    </main>
-    <footer>
-        <div class="contacts">
-            <div class="contact-links">
-                <img src="/images/email-icon.png" height="18px">
-                <p>eztrade@info.com</p>
+            <div class="full-description hide">
+                <div class="seller-contact-info">
+                    <div class="seller-info">
+                        <img src="/images/user-icon-empty.png" width="25px" height="25px">
+                        <p class="seller-profile-name">{{this.user.first_name}} {{this.user.last_name}}</p>
+                    </div>
+                    <div class="seller-info">
+                        <img src="/images/email-icon-2.png" height="25px">
+                        <p class="seller-email-address">{{this.user.email}}</p>
+                    </div>
+                    <div class="seller-info">
+                        <img src="/images/phone-icon-2.png" height="25px">
+                        <p class="seller-phone-number">{{this.user.phone}}</p>
+                    </div>
+                </div>
             </div>
-            <div class="contact-links">
-                <img src="/images/phone-icon.png" height="18px">
-                <p>1-800-545-3954</p>
+
+            <div class="x-button hide">
+                <div class="bar-1"></div>
+                <div class="bar-2"></div>
             </div>
         </div>
-    </footer>
+        {{/each}}
+    </section>
+    {{else}}
+    <p>No products found.</p>
+    {{/if}}
+</main>
+<footer>
+    <div class="contacts">
+        <div class="contact-links">
+            <img src="/images/email-icon.png" height="18px">
+            <p>eztrade@info.com</p>
+        </div>
+        <div class="contact-links">
+            <img src="/images/phone-icon.png" height="18px">
+            <p>1-800-545-3954</p>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/index.js"></script>
+<script src="/js/logout.js"></script>

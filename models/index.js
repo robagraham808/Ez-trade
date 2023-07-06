@@ -23,6 +23,24 @@ User.hasMany(Product, {
   onDelete: 'CASCADE',
 });
 
-ShoppingCart.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+ShoppingCart.belongsTo(User, { 
+  foreignKey: 'buyer_id', 
+  onDelete: 'CASCADE' 
+});
+
+User.hasMany(ShoppingCart, {
+  foreignKey: 'buyer_id', 
+  onDelete: 'CASCADE'
+});
+
+Product.hasMany(ShoppingCart, { 
+  foreignKey: 'product_id', 
+  onDelete: 'CASCADE' 
+});
+
+ShoppingCart.belongsTo(Product, {
+  foreignKey: 'product_id', 
+  onDelete: 'CASCADE'
+});
 
 module.exports = { User, Product, Category, ShoppingCart };
