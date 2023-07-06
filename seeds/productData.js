@@ -25,6 +25,18 @@ const productdata = [
     category_id: 3,
     user_id: 1,
   },  
+  {
+    product_name: 'Tesla Model 3',
+    shortDescription: 'Beautiful new Tesla Model 3 with low miles.',
+    longDescription:
+      'Model 3 is fully electric with 333 miles of estimated range, so you never need to visit a gas station again.',
+    price: 44000.00,
+    image: 'https://images.unsplash.com/photo-1561580125-028ee3bd62eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2970&q=80',
+    location_city: 'Los Angeles',
+    location_state: 'California',
+    category_id: 4,
+    user_id: 1,
+  }
 ];
 
 const seedProduct = () => Product.bulkCreate(productdata);

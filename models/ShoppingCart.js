@@ -12,10 +12,6 @@ ShoppingCart.init(
       autoIncrement: true,
     },
 
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
 
     product_id: {
       type: DataTypes.INTEGER,

@@ -1,6 +1,8 @@
-  <header>
+ <header>
         <div class="header-top">
-            <img src="/images/home-icon.png" height="35px">
+            <a href="/">
+                <img src="/images/home-icon.png" height="35px">
+            </a>
             <img src="/images/ez-tradelogo.png" height="35px">
             <div class="custom-searchbar">
                 <input class="search-bar" type="text" name="search" placeholder="search">
@@ -17,30 +19,56 @@
             </div> --}}
             {{#if logged_in}}
             <a class="profile-icon" href="/profile"></a>
+            <button id="logout">logout</button>
             {{else}}
             <a class="profile-icon" href="/login"></a>
             {{/if}}
-
-            <div class="shopping-cart-icon">
-                <p class="cart-counter">0</p>
-            </div>
+            <a href="/cart/{{buyer_id}}">
+                <div class="shopping-cart-icon">
+                    <p class="cart-counter">0</p>
+                </div>
+            </a>
         </div>
         <div class="header-lower">
+                          
+
             <ul class="category-links">
-               <li class="categories" data-category="1">Electronics</li>
-                <li class="categories" data-category="2">Books</li>
-                <li class="categories" data-category="3">Gifts</li>
-                <li class="categories" data-category="4">Fashion</li>
-                <li class="categories" data-category="5">Toys/Games</li>
-                <li class="categories" data-category="6">Home Goods</li>
-                <li class="categories" data-category="7">Sports Gear</li>
-                <li class="categories" data-category="8">Shoes</li>
+                
+               <li class="categories" data-category="1">
+                <a href="/searchresults/1">Electronics</a>
+                </li>
+                <li class="categories" data-category="2">
+                    <a href="/searchresults/2"></a>
+                </li>
+                <li class="categories" data-category="3">
+                    <a href="/searchresults/3">Gifts</a>
+                    </li>
+                <li class="categories" data-category="4">
+                    <a href="/searchresults/4">Fashion</a>
+                    </li>
+                <li class="categories" data-category="5">
+                    <a href="/searchresults/5">Toys/Games</a>
+                    </li>
+                <li class="categories" data-category="6">
+                    <a href="/searchresults/6">Home Goods</a>
+                    </li>
+                <li class="categories" data-category="7">
+                    <a href="/searchresults/7">Sports Gear</a>
+                    </li>
+                <li class="categories" data-category="8">
+                    <a href="/searchresults/8">Shoes</a>
+                    </li>
                 <li  class="more">More
             <ul>
-                        <li class="categories" data-category="9">Automotive</li>
-                        <li class="categories" data-category="10">Hardware / tools</li>
-                        <li class="categories" data-category="11">Other</li>
-                        <li class="categories" data-category="12">Misc</li>
+                        <li class="categories" data-category="9">
+                            <a href="/searchresults/9">Automotive</a>
+                        </li>
+                        <li class="categories" data-category="10">
+                           <a href="/searchresults/10">Hardware / tools</a>
+                            </li>
+                        <li class="categories" data-category="12">
+                            <a href="/searchresults/11">Misc</a>
+                            </li>
                     </ul>
                 </li>
             </ul>
@@ -66,49 +94,74 @@
                 </div>
                 <div class="mobile-categories hide">
                     <ul class="category-links-mobile">
-                        <li class="categories" data-category="1">Electronics</li>
-                        <li class="categories" data-category="2">Books</li>
-                        <li class="categories" data-category="3">Gifts</li>
-                        <li class="categories" data-category="4">Fashion</li>
-                        <li class="categories" data-category="5">Toys/Games</li>
-                        <li class="categories" data-category="6"></li>
-                        <li class="categories" data-category="7">Sports Gear</li>
-                        <li class="categories" data-category="8">Hardware</li>
-                        <li class="categories" data-category="9">Automotive</li>
-                        <li class="categories" data-category="10"></li>
-                        <li class="categories" data-category="11">Other</li>
-                        <li class="categories" data-category="12">Misc</li>
+                        <li class="categories" data-category="1">
+                <a href="/searchresults/1">Electronics</a>
+                </li>
+                <li class="categories" data-category="2">
+                    <a href="/searchresults/2"></a>
+                </li>
+                <li class="categories" data-category="3">
+                    <a href="/searchresults/3">Gifts</a>
+                    </li>
+                <li class="categories" data-category="4">
+                    <a href="/searchresults/4">Fashion</a>
+                    </li>
+                <li class="categories" data-category="5">
+                    <a href="/searchresults/5">Toys/Games</a>
+                    </li>
+                <li class="categories" data-category="6">
+                    <a href="/searchresults/6">Home Goods</a>
+                    </li>
+                <li class="categories" data-category="7">
+                    <a href="/searchresults/7">Sports Gear</a>
+                    </li>
+                <li class="categories" data-category="8">
+                    <a href="/searchresults/8">Shoes</a>
+                    </li>
+                        <li class="categories" data-category="9">
+                            <a href="/searchresults/9">Automotive</a>
+                        </li>
+                        <li class="categories" data-category="10">
+                           <a href="/searchresults/10">Hardware / tools</a>
+                            </li>
+                        <li class="categories" data-category="12">
+                            <a href="/searchresults/11">Misc</a>
+                            </li>
                     </ul>
                 </div>
             </div>
         </div>
     </header>
+
     <main id="main-product">
+        <div id="product-info" class="hide">{{this.id}}</div>
+        <div class="user-info hide">{{buyer_id}}</div>
+
         <section class="item-view">
             <div class="product-view-img">
-                <div class="product-place-holder" style="background-color: blue; width: 100%; height: 500px;">
+                <div class="product-place-holder" style="background-image: url('{{this.image}}'); width: 400px; height: 300px; background-repeat: no-repeat; background-size: cover;">
                 </div>
             </div>
             <div class="product-view-description">
                 <h2>{{this.product_name}}</h2>
-                <h3>${{this.price}}</h3>
+                <h3 class="product-price">{{this.price}}</h3>
                 <div class="productview-location">
-                    <img src="images/location-icon.png" height="20px">
+                    <img src="/images/location-icon.png" height="20px">
                     <p class="product-seller-location">{{this.location_city}}, {{this.location_state}}</p>
                 </div>
                 <p>{{this.longDescription}}</p>
                 <h5 id="contact-seller">Contact Seller</h5>
                 <div class="product-seller-info">
                     <div class="seller-info-productview">
-                        <img src="images/user-icon-empty.png" width="20px" height="20px">
+                        <img src="/images/user-icon-empty.png" width="20px" height="20px">
                         <p class="seller-profile-name">{{this.user.first_name}} {{this.user.last_name}}</p>
                     </div>
                     <div class="seller-info-productview">
-                        <img src="images/email-icon-2.png" height="20px">
+                        <img src="/images/email-icon-2.png" height="20px">
                         <p class="seller-email-address">{{this.user.email}}</p>
                     </div>
                     <div class="seller-info-productview">
-                        <img src="images/phone-icon-2.png" height="20px">
+                        <img src="/images/phone-icon-2.png" height="20px">
                         <p class="seller-phone-number">{{this.user.phone}}</p>
                     </div>
 
@@ -118,18 +171,17 @@
         </section>
     </main>
 
-    <footer id="product-footer">
+    {{!-- <footer id="product-footer">
         <div class="contacts">
             <div class="contact-links">
                 <img src="images/email-icon-footer.png" height="18px">
-                <p>eztrade@info.com</p>
+                <p>eztradeinfo.com</p>
             </div>
             <div class="contact-links">
                 <img src="images/phone-icon-footer.png" height="18px">
                 <p>1-800-545-3954</p>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
-    <script src="index.js"></script>
-    <script src="shoppinngCart.js"></script>
+    <script src="/js/index.js"></script>
