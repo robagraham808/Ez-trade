@@ -1,6 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-const session = require ('express-session');
+const session = require('express-session');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -8,9 +8,7 @@ const helpers = require('./utils/helpers');
 const path = require('path');
 require('dotenv').config();
 
-
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3006;
@@ -28,8 +26,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));

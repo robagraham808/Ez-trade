@@ -1,4 +1,4 @@
-
+const { checkout } = require('../../controllers');
 
 var moreInfoButton = document.querySelectorAll('.more-info');
 var exitButton = document.querySelectorAll('.x-button');
@@ -112,56 +112,74 @@ var searchButtons = document.querySelectorAll('.search-button');
 //   });
 // });
 
-
 //shoping cart functions
 //this is responsible for the number inside of the cart icon
 let itemCount = 0;
 var itemCountLabel = document.querySelectorAll('.cart-counter');
 
-for (let i = 0; i < itemCountLabel.length; i++ ){
+for (let i = 0; i < itemCountLabel.length; i++) {
   itemCountLabel[i].innerText = itemCount;
 }
-
 
 var addToCartButtons = document.querySelector('.add-to-cart');
 var deleteFromCartButtons = document.querySelectorAll('.remove-from-cart');
 
-
-
 deleteFromCartButtons.forEach(function (deleteFromCartButton) {
-  deleteFromCartButton.addEventListener("click", deleteItemFromCart);
+  deleteFromCartButton.addEventListener('click', deleteItemFromCart);
 });
 
 async function addItemToCart() {
-
   //probably will work with stripe
   itemCount = itemCount + 1;
   const product_id = document.querySelector('#product-info').innerText;
   const price = document.querySelector('.product-price').innerText;
   const buyer_id = document.querySelector('.user-info').innerText;
 
-
   console.log(product_id, price, buyer_id);
 
   const shoppingCart = await fetch('/api/cart', {
-      method: 'POST',
-      body: JSON.stringify({product_id, buyer_id }),
-      headers: {'Content-Type':'application/json'},
-    });
+    method: 'POST',
+    body: JSON.stringify({ product_id, buyer_id }),
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-    console.log(shoppingCart);
-
+  console.log(shoppingCart);
 }
 
-addToCartButtons.addEventListener("click", addItemToCart);
-
+addToCartButtons.addEventListener('click', addItemToCart);
 
 function deleteItemFromCart() {
   if (itemCount > 0) {
     itemCount = itemCount - 1;
   }
-
 }
+
+async function checkout() {
+  const items = await fetch('/api/cart', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+
+    //select all records from shoppingCart where buyer_id = current user
+    body: JSON.stringify({
+      items: [],
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return res.json().then((json = Promise.reject(json)));
+      }
+    })
+    .then(({ url }) => {
+      window.location = url;
+    })
+    .catch((e) => {
+      console.error(e.error);
+    });
+}
+const checkoutButton = document.querySelector('.checkout-button');
+checkoutButton.addEventListener('click', checkout);
 
 // const getSearchResults = () =>
 //   fetch('/api/', {
@@ -170,7 +188,6 @@ function deleteItemFromCart() {
 //       'Content-Type': 'application/json',
 //     },
 //   });
-
 
 // const categories = document.querySelectorAll('.categories');
 
@@ -191,8 +208,6 @@ function deleteItemFromCart() {
 //   });
 // }
 
-
 //add to cart
 
 var shoppingCartButton = document.querySelector('.shopping-cart-icon');
-
