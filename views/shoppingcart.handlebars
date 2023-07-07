@@ -39,7 +39,7 @@
                 <a href="/searchresults/1">Electronics</a>
                 </li>
                 <li class="categories" data-category="2">
-                    <a href="/searchresults/2"></a>
+                    <a href="/searchresults/2">Books</a>
                 </li>
                 <li class="categories" data-category="3">
                     <a href="/searchresults/3">Gifts</a>
@@ -99,7 +99,7 @@
                 <a href="/searchresults/1">Electronics</a>
                 </li>
                 <li class="categories" data-category="2">
-                    <a href="/searchresults/2"></a>
+                    <a href="/searchresults/2">Books</a>
                 </li>
                 <li class="categories" data-category="3">
                     <a href="/searchresults/3">Gifts</a>
@@ -137,6 +137,8 @@
 
         <main>
             <section class="cartview-body">
+                <div class="user-info hide">{{buyer_id}}</div>
+
 
                 {{#each shoppingCart as |cartitem|}}
                 <div class="cart-item">
@@ -186,7 +188,7 @@
     <footer class="cartview-footer">
         <div class="contacts">
             <div class="contact-links">
-                <img src="/images/email-icon-footer.png" height="18px">
+                <img src="/images/email-icon-footer.png" height="15px">
                 <p>eztrade@info.com</p>
             </div>
             <div class="contact-links">

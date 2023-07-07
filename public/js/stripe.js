@@ -1,5 +1,7 @@
+const buyer_id = document.querySelector('.user-info').innerText;
+
 async function getCartItems() {
-  let cartItems = await fetch('/api/cart', {
+  let cartItems = await fetch(`/checkout/${buyer_id}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
@@ -11,30 +13,44 @@ window.addEventListener('DOMContentLoaded', async function () {
   console.log('getCartItems', itemsData);
 });
 
-async function checkoutCart() {
-  console.log('Checkout finctio  jsut ran! ');
-  const items = await fetch('/api/cart', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+const test = "test"
 
-    //select all records from shoppingCart where buyer_id = current user
+async function checkoutCart() {
+  let cartItems = await getCartItems();
+  const itemsData = await cartItems.json();
+  console.log('getCartItems', itemsData[1].product.product_name);
+
+
+  for (let i = 0; i < itemsData.length; i++) {
+    itemsData[i].product = itemsData[i].product.price;
+    // itemsData[i].user = itemsData[i].product.product_name;
+
+  };
+
+
+
+  fetch("/api/checkout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // Send along all the information about the items
     body: JSON.stringify({
-      itemsData,
+      items: itemsData,
     }),
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return res.json().then((json = Promise.reject(json)));
-      }
+    .then(res => {
+      if (res.ok) return res.json()
+      // If there is an error then make sure we catch that
+      return res.json().then(e => Promise.reject(e))
     })
     .then(({ url }) => {
-      window.location = url;
+      // On success redirect the customer to the returned URL
+      window.location = url
     })
-    .catch((e) => {
-      console.error(e.error);
-    });
+    .catch(e => {
+      console.log(e)
+    })
 }
 
 window.addEventListener('DOMContentLoaded', function () {
