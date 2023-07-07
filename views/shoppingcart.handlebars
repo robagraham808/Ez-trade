@@ -143,6 +143,74 @@
                 {{#each shoppingCart as |cartitem|}}
                 <div class="cart-item">
                     <div class="cart-item-img">
+                        <div class="cart-image-placeholder" style="background-image: url({{this.product.image}}); width: 200px; height: 200px; background-repeat: no-repeat; background-size: cover;"></div>
+                    </div>
+                    <div class="cart-item-info">
+                        <h2 class="cart-item-name">{{this.product.product_name}}</h2>
+                        <h3 class="cart-item-price">{{this.product.price}}</h3>
+                        <p class="cart-view-description">{{this.product.shortDescription}}</p>
+                        <div class="cart-contact-info">
+                            <div class="seller-info-cartview">
+                                <img src="/images/user-icon-empty.png" width="20px" height="20px">
+                                <p class="seller-profile-name">profile name</p>
+                            </div>
+                            <div class="seller-info-cartview">
+                                <img src="/images/email-icon-2.png" height="20px">
+                                <p class="seller-email-address">seller@email.com</p>
+                            </div>
+                            <div class="seller-info-cartview">
+                                <img src="/images/phone-icon-2.png" height="20px">
+                                <p class="seller-phone-number">phone number</p>
+                            </div>
+                            <div class="seller-info-cartview">
+                                <img src="/images/location-icon.png" height="20px">
+                                <p class="cart-seller-location">Dallas, Texas</p>
+                            </div>
+                        </div>
+                        <button class="remove-from-cart">
+                            <div class="remove-from-cart-icon">
+
+                            </div>
+                            Remove
+                        </button>
+                    </div>
+                </div>
+                {{/each}}
+
+                <div class="sub-total">
+                    <P id="ammount-of-items"> Subtotal  Items</P>
+                    <p id="total-cost">Total: $</p>
+                    <button class="checkout-button">Checkout</button>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+    <footer class="cartview-footer">
+        <div class="contacts">
+            <div class="contact-links">
+                <img src="/images/email-icon-footer.png" height="15px">
+                <p>eztrade@info.com</p>
+            </div>
+            <div class="contact-links">
+                <img src="/images/phone-icon-footer.png" height="18px">
+                <p>1-800-545-3954</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/stripe.js"></script>
+
+
+
+<!-- 
+     <section class="cartview-body">
+                <div class="user-info hide">{{buyer_id}}</div>
+
+
+                {{#each shoppingCart as |cartitem|}}
+                <div class="cart-item">
+                    <div class="cart-item-img">
                         <div class="cart-image-placeholder" style="background-image: url("{{this.product.image}}"); width: 200px; height: 200px; background-repeat: no-repeat; background-size: cover;"></div>
                     </div>
                     <div class="cart-item-info">
@@ -183,18 +251,4 @@
                     <button class="checkout-button">Checkout</button>
                 </div>
             </section>
-        </main>
-    </div>
-    <footer class="cartview-footer">
-        <div class="contacts">
-            <div class="contact-links">
-                <img src="/images/email-icon-footer.png" height="15px">
-                <p>eztrade@info.com</p>
-            </div>
-            <div class="contact-links">
-                <img src="/images/phone-icon-footer.png" height="18px">
-                <p>1-800-545-3954</p>
-            </div>
-        </div>
-    </footer>
-    <script src="/js/stripe.js"></script>
+-->
