@@ -31,6 +31,15 @@ ShoppingCart.init(
         key: 'id',
       },
     },
+    // product_price: {
+    //   type: DataTypes.DECIMAL,
+    //   allowNull: false,
+    //   onDelete: 'CASCADE',
+    //   references: {
+    //     model: 'product',
+    //     key: 'price',
+    //   },
+    // }
   },
   {
     sequelize,

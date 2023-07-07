@@ -150,6 +150,29 @@ router.get('/cart/:buyer_id', withAuth, async (req,res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
+
+router.get('/checkout/:buyer_id', withAuth, async (req,res) => {
+  try {
+
+    const shoppingCartDB = await ShoppingCart.findAll({
+      include: [{model: Product}, {model: User}],
+      where: { buyer_id:req.params.buyer_id },
+    })
+
+    const shoppingCart = shoppingCartDB.map((item) => item.get({ plain: true }));
+
+
+     res.status(200).json(shoppingCart);
+    // res.render('shoppingcart', {
+    //   shoppingCart,
+    //   buyer_id: req.session.user_id
+    // });
+
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

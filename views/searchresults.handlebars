@@ -133,7 +133,7 @@
         </div>
     </header>
 
-
+<div class="searchresults-container"> 
 <main>
     {{#if products.length}}
     <section class="items">
@@ -190,18 +190,18 @@
     <p>No products found.</p>
     {{/if}}
 </main>
-<footer>
-    <div class="contacts">
-        <div class="contact-links">
-            <img src="/images/email-icon.png" height="18px">
-            <p>eztrade@info.com</p>
+<footer id="search-results-footer">
+     <div class="contacts">
+            <div class="contact-links">
+                <img src="/images/email-icon-footer.png" height="15px">
+                <p>eztrade@info.com</p>
+            </div>
+            <div class="contact-links">
+                <img src="/images/phone-icon-footer.png" height="18px">
+                <p>1-800-545-3954</p>
+            </div>
         </div>
-        <div class="contact-links">
-            <img src="/images/phone-icon.png" height="18px">
-            <p>1-800-545-3954</p>
-        </div>
-    </div>
 </footer>
-
+</div>
 <script src="/js/index.js"></script>
 <script src="/js/logout.js"></script>

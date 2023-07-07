@@ -8,29 +8,72 @@ const YOUR_DOMAIN = 'process.env.YOUR_DOMAIN';
 
 router.post('/', async (req, res) => {
   try {
+    // const cartItem = req.body.get(req.body.id);
+
+    console.log('REQUEST RECEIVED', req.body);
+
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      mode: 'payment',
-      line_items: req.body.items.map((item) => {
-        const storeItem = storeItems.get(item.id);
+      line_items:       req.body.items.map((item) => {
+        const storeItem = storeItem.get(item.id);
         return {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: storeItem.product_name,
+              name: 'test',
             },
-            unit_amount: storeItem.price * 100,
+            unit_amount: storeItem.product,
             quantity: 1,
           },
         };
       }),
-      success_url: `${YOUR_DOMAIN}/success.html`,
-      cancel_url: `${YOUR_DOMAIN}/cart.html`,
+
+      mode: 'payment',
+
+      
+      success_url: `https://google.com`,
+      cancel_url: `https://google.com`,
     });
-    res.send({ url: session.url });
+    res.redirect( session.url );
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+// router.post("/", async (req, res) => {
+//   try {
+//     // Create a checkout session with Stripe
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ["card"],
+//       // For each item use the id to get it's information
+//       // Take that information and convert it to Stripe's format
+//       line_items: req.body.items.map(({ id, quantity }) => {
+//         const storeItem = storeItems.get(id)
+//         return {
+//           price_data: {
+//             currency: "usd",
+//             product_data: {
+//               name: 'name',
+//             },
+//             unit_amount: 100000,
+//           },
+//           quantity: 1,
+//         }
+//       }),
+//       mode: "payment",
+//       // Set a success and cancel URL we will send customers to
+//       // These must be full URLs
+//       // In the next section we will setup CLIENT_URL
+//       success_url: `https://google.com`,
+//       cancel_url: `https://google.com`,
+//     })
+
+//     res.json({ url: session.url })
+//   } catch (e) {
+//     // If there is an error send it to the client
+//     res.status(500).json({ error: e.message })
+//   }
+// })
 
 module.exports = router;
