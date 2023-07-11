@@ -11,13 +11,6 @@
                     <div class="button-icon"></div>
                 </button>
             </div>
-            {{!-- <div class="profile-icon">
-                {{#if logged_in}}
-                <a href="/profile"></a>
-                {{else}}
-                <a href="/login"></a>
-                {{/if}}
-            </div> --}}
             {{#if logged_in}}
             <a class="profile-icon" href="/profile"></a>
             <button id="logout">logout</button>
@@ -26,7 +19,7 @@
             {{/if}}
             <a href="/cart/{{buyer_id}}">
                 <div class="shopping-cart-icon">
-                    <p class="cart-counter">0</p>
+                    <p class="cart-counter">{{cart_counter}}</p>
                 </div>
             </a>
         </div>
@@ -143,7 +136,9 @@
                 {{#each shoppingCart as |cartitem|}}
                 <div class="cart-item">
                     <div class="cart-item-img">
-                        <div class="cart-image-placeholder" style="background-image: url({{this.product.image}}); width: 200px; height: 200px; background-repeat: no-repeat; background-size: cover;"></div>
+                        <a href="/product/{{this.product.id}}">
+                            <div class="cart-image-placeholder" style="background-image: url({{this.product.image}}); width: 200px; height: 200px; background-repeat: no-repeat; background-size: cover;"></div>
+                        </a>
                     </div>
                     <div class="cart-item-info">
                         <h2 class="cart-item-name">{{this.product.product_name}}</h2>
@@ -178,7 +173,7 @@
                 {{/each}}
 
                 <div class="sub-total">
-                    <P id="ammount-of-items"> Subtotal  Items</P>
+                    <P id="ammount-of-items"> Subtotal Items: {{cart_counter}}</P>
                     <p id="total-cost">Total: $</p>
                     <button class="checkout-button">Checkout</button>
                 </div>
@@ -199,6 +194,7 @@
             </div>
         </div>
     </footer>
+    <script src="/js/cart.js" defer></script>
     <script src="/js/stripe.js"></script>
 
 
@@ -252,3 +248,4 @@
                 </div>
             </section>
 -->
+

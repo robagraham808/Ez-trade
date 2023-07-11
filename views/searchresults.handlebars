@@ -10,19 +10,14 @@
                     <div class="button-icon"></div>
                 </button>
             </div>
-            {{!-- <div class="profile-icon">
-                {{#if logged_in}}
-                <a href="/profile"></a>
-                {{else}}
-                <a href="/login"></a>
-                {{/if}}
-            </div> --}}
+            
             {{#if logged_in}}
             <a class="profile-icon" href="/profile"></a>
             <button id="logout">logout</button>
             {{else}}
             <a class="profile-icon" href="/login"></a>
             {{/if}}
+
             <a href="/cart/{{buyer_id}}">
                 <div class="shopping-cart-icon">
                     <p class="cart-counter">0</p>
@@ -205,3 +200,4 @@
 </div>
 <script src="/js/index.js"></script>
 <script src="/js/logout.js"></script>
+<script src="/js/cart.js" defer></script>

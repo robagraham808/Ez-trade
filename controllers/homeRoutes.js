@@ -112,9 +112,28 @@ router.get('/searchresults/:id', async (req, res) => {
 
   const products = productDb.map((product) => product.get({ plain: true }));
 
+  // let cartCount = 0;
+  
+  // if (req.session.user_id) {
+  //   const shoppingCartDB = await ShoppingCart.findAll({
+  //     include: [{model: Product}, {model: User}],
+  //     where: { buyer_id:req.session.user_id },
+  //   })
+  
+  //   const shoppingCart = shoppingCartDB.map((item) => item.get({ plain: true }));
 
-    //res.status(200).json(products)
-    res.render('searchresults', {products});
+  //   const cartCount = shoppingCart.length;
+
+  //   return cartCount
+  // }
+
+
+  //res.status(200).json(products)
+  res.render('searchresults', {
+      products,
+      
+  });
+
   } catch (error) {
     res.status(500).json(error);
   }
@@ -140,10 +159,12 @@ router.get('/cart/:buyer_id', withAuth, async (req,res) => {
     const shoppingCart = shoppingCartDB.map((item) => item.get({ plain: true }));
 
 
-     //res.status(200).json(shoppingCart);
+
+    //res.status(200).json(shoppingCart);
     res.render('shoppingcart', {
       shoppingCart,
-      buyer_id: req.session.user_id
+      buyer_id: req.session.user_id,
+      cart_counter: shoppingCart.length,
     });
 
 
