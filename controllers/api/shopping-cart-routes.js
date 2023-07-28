@@ -26,21 +26,29 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const newCart = await ShoppingCart.destroy({
+    const deleteItem = await ShoppingCart.destroy({
       where: {
-        user_id: req.session.user_id,
+        id: req.params.id,
       },
     });
 
-    if (!newCart) {
-      res.status(404).json({ message: 'No product found with this id!' });
-      return;
-    }
-
-    res.status(200).json(newCart);
+    res.status(200).json(deleteItem);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+router.get('/test/:id', async (req, res) => {
+  try {
+    const deleteItem = await ShoppingCart.findAll({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    res.status(200).json(deleteItem);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;

@@ -54,61 +54,6 @@ for (i = 0; i < exitMenuBtn.length; i++) {
   });
 }
 
-//the login-button class was just for styling purposes. I gave the login and signup button each their own id since they're unique and theres not multiple of them
-// var logInBtn = document.querySelector('#login');
-// var signUpBtn = document.querySelector('#signup');
-
-// logInBtn.addEventListener("click", userLogin);
-// signUpBtn.addEventListener("click", createAccount);
-
-// async function userLogin() {
-
-// }
-
-// function createAccount() {
-
-// }
-
-// var registerBtn = document.querySelectorAll('.register-Btn');
-
-// for (i = 0; i < registerBtn.length; i++) {
-//   registerBtn[i].addEventListener('click', function () {
-//     var registerBtn = this.closest('.item');
-//     var expandButton = mainParent.querySelector('.expand-icon');
-//     var moreContent = mainParent.querySelector('.full-description');
-//     exitButton.classList.remove('hide');
-//     navMenuLinks.classList.remove('hide');
-//   });
-// }
-
-// var sellBtn = document.querySelectorAll('.sell-btn');
-
-// sellBtn[i].addEventListener('click', function () {
-//   var sellBtn = this.closest('item');
-//   var expandButton = mainParent.querySelector('.expand-icon');
-//   var moreContent = mainParent.querySelector('.full-description');
-//   exitButton.classList.remove('hide');
-//   navMenuLinks.classList.remove('hide');
-// });
 
 var searchButtons = document.querySelectorAll('.search-button');
 
-// searchButtons.forEach(function (searchButton) {
-//   searchButton.addEventListener('click', function () {
-//     var searchInput = this.parent.querySelector('.search-bar');
-//     var userSearch = searchInput.value;
-//   });
-
-//   var helpAndContactBtn = document.querySelectorAll('.helpandcontactbtn');
-
-//   helpAndContactBtn[i].addEventListener('click', function () {
-//     var helpAndContactBtn = this.closest('item');
-//     var expandButton = mainParent.querySelector('expand-icon');
-//     var moreContent = mainParent.querySelector('full-description');
-//     exitButton.classList.remove('hide');
-//     navMenuLinks.classList.remove('hide');
-//   });
-// });
-
-//shoping cart functions
-//this is responsible for the number inside of the cart icon

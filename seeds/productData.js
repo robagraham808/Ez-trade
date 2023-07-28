@@ -102,4 +102,3 @@ const productdata = [
 const seedProduct = () => Product.bulkCreate(productdata);
 
 module.exports = seedProduct;
-``
