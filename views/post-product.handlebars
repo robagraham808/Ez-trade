@@ -1,0 +1,47 @@
+<header id="post-header">
+     <a id="home-button-postpage" href="/">
+                <img src="/images/home-icon.png" height="35px">
+            </a>
+            <img src="/images/ez-tradelogo.png" height="35px">
+</header>
+
+<section id="post-main">
+    <h2 id="post-head">Post a New Product</h2>
+<form method="post" id="post-product-form">
+    <input type="text" id="product_name" placeholder="name of product" name="product_name" required>
+
+    <input type="text" id="shortDescription" placeholder="short description" name="shortDescription" required>
+
+    <input type="text" id="longDescription" placeholder="long description" name="longDescription" required>
+    
+
+    <input type="decimal" placeholder="price" id="price" name="price" required>
+
+    <input type="text" placeholder="image url" id="image" name="image" required>
+
+    <input type="text" placeholder="city" id="location_city" name="location_city" required>
+
+    <input type="text" placeholder="state" id="location_state" name="location_state" required>
+
+    <h3 id="choose-cat">Choose a Category</h3>
+    <select id="chosen-category">
+        <option value="1">Electronics</option>
+        <option value="2">Books</option>
+        <option value="3">Gifts</option>
+        <option value="4">Fashion</option>
+        <option value="5">Toys/Games</option>
+        <option value="6">Home Goods</option>
+        <option value="7">Sports Gear</option>
+        <option value="8">Shoes</option>
+        <option value="9">Automotive</option>
+        <option value="10">Hardware/Tools</option>
+        <option value="11">Misc</option>
+    </select>
+
+
+
+    <button id="submit-button" type="submit">Submit</button>
+</form>
+</section>
+
+<script src="/js/post-product.js"></script>

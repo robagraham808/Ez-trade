@@ -6,12 +6,28 @@ async function getCartItems() {
     headers: { 'Content-Type': 'application/json' },
   });
   return cartItems;
-}
+};
+
 window.addEventListener('DOMContentLoaded', async function () {
   let cartItems = await getCartItems();
   const itemsData = await cartItems.json();
   console.log('getCartItems', itemsData);
 });
+
+async function deleteCartItem() {
+  let cartItems = await getCartItems();
+  const itemsData = await cartItems.json();
+
+  let id= [];
+
+  for (i=0; i < itemsData.length; i++) {
+    itemID = itemsData[i].id;
+    id.push(itemID);
+  }
+  console.log(id);
+}
+
+deleteCartItem();
 
 const test = "test"
 

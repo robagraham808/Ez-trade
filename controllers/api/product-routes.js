@@ -13,12 +13,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', withAuth, async (req,res) => {
+router.post('/post-product', withAuth, async (req,res) => {
   try {
     const newProduct = await Product.create({
       ...req.body,
       user_id: req.session.user_id,
     })
+    console.log(newProduct);
     res.status(200).json(newProduct);
   } catch (err) {
     res.status(400).json(err);

@@ -11,22 +11,19 @@
                     <div class="button-icon"></div>
                 </button>
             </div>
-            {{!-- <div class="profile-icon">
-                {{#if logged_in}}
-                <a href="/profile"></a>
-                {{else}}
-                <a href="/login"></a>
-                {{/if}}
-            </div> --}}
-            {{#if logged_in}}
-            <a class="profile-icon" href="/profile"></a>
+             {{#if logged_in}}
+            <a class="profile-icon" href="/profile">
+            <img src="/images/no-user-icon.png" width="35px">
+            </a>
             <button id="logout">logout</button>
             {{else}}
-            <a class="profile-icon" href="/login"></a>
+            <a class="profile-icon" href="/login">
+            <img src="/images/not-logged-in-user-icon.png" width="35px">
+            </a>
             {{/if}}
             <a href="/cart/{{buyer_id}}">
                 <div class="shopping-cart-icon">
-                    <p class="cart-counter">0</p>
+                    <p id="amount-items-cart" class="cart-counter">{{cart_counter}}</p>
                 </div>
             </a>
         </div>
@@ -77,7 +74,7 @@
                 <div class="mobile-nav">
                     <div class="custom-searchbar-mobile">
                         <input class="search-bar" type="text" name="search" placeholder="search">
-                        <button class="search-button">
+                        <button class="mobile-search-button">
                             <div class="button-icon"></div>
                         </button>
                     </div>
@@ -136,20 +133,22 @@
 
 
         <main>
-            <section class="cartview-body">
+            <section id="cartview-body">
                 <div class="user-info hide">{{buyer_id}}</div>
 
 
                 {{#each shoppingCart as |cartitem|}}
-                <div class="cart-item">
+                <div class="cart-item" cart-id="{{this.id}}">
                     <div class="cart-item-img">
-                        <div class="cart-image-placeholder" style="background-image: url({{this.product.image}}); width: 200px; height: 200px; background-repeat: no-repeat; background-size: cover;"></div>
+                        <a href="/product/{{this.product.id}}">
+                            <div class="cart-image-placeholder" style="background-image: url({{this.product.image}}); width: 200px; height: 200px; background-repeat: no-repeat; background-size: cover;"></div>
+                        </a>
                     </div>
                     <div class="cart-item-info">
                         <h2 class="cart-item-name">{{this.product.product_name}}</h2>
                         <h3 class="cart-item-price">{{this.product.price}}</h3>
                         <p class="cart-view-description">{{this.product.shortDescription}}</p>
-                        <div class="cart-contact-info">
+                        {{!-- <div class="cart-contact-info">
                             <div class="seller-info-cartview">
                                 <img src="/images/user-icon-empty.png" width="20px" height="20px">
                                 <p class="seller-profile-name">profile name</p>
@@ -166,8 +165,8 @@
                                 <img src="/images/location-icon.png" height="20px">
                                 <p class="cart-seller-location">Dallas, Texas</p>
                             </div>
-                        </div>
-                        <button class="remove-from-cart">
+                        </div> --}}
+                        <button delete-id="{{this.id}}" class="remove-from-cart">
                             <div class="remove-from-cart-icon">
 
                             </div>
@@ -178,8 +177,8 @@
                 {{/each}}
 
                 <div class="sub-total">
-                    <P id="ammount-of-items"> Subtotal  Items</P>
-                    <p id="total-cost">Total: $</p>
+                    <P id="ammount-of-items"> Subtotal Items: {{cart_counter}}</P>
+                    <p id="total-cost"></p>
                     <button class="checkout-button">Checkout</button>
                 </div>
             </section>
@@ -199,6 +198,7 @@
             </div>
         </div>
     </footer>
+    <script src="/js/cart.js" defer></script>
     <script src="/js/stripe.js"></script>
 
 
@@ -252,3 +252,4 @@
                 </div>
             </section>
 -->
+

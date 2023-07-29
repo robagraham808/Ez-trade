@@ -10,22 +10,25 @@
                     <div class="button-icon"></div>
                 </button>
             </div>
-            {{!-- <div class="profile-icon">
-                {{#if logged_in}}
-                <a href="/profile"></a>
-                {{else}}
-                <a href="/login"></a>
-                {{/if}}
-            </div> --}}
+            
             {{#if logged_in}}
-            <a class="profile-icon" href="/profile"></a>
+            <a class="profile-icon" href="/profile">
+            <img src="/images/no-user-icon.png" width="35px">
+            </a>
             <button id="logout">logout</button>
             {{else}}
-            <a class="profile-icon" href="/login"></a>
+            <a class="profile-icon" href="/login">
+            <img src="/images/not-logged-in-user-icon.png" width="35px">
+            </a>
             {{/if}}
+
             <a href="/cart/{{buyer_id}}">
                 <div class="shopping-cart-icon">
-                    <p class="cart-counter">0</p>
+                    {{#if logged_in}}
+                    <p class="cart-counter">{{cartCount}}</p>
+                    {{else}}
+                    <p class="cart-counter"></p>
+                    {{/if}}
                 </div>
             </a>
         </div>
@@ -76,7 +79,7 @@
                 <div class="mobile-nav">
                     <div class="custom-searchbar-mobile">
                         <input class="search-bar" type="text" name="search" placeholder="search">
-                        <button class="search-button">
+                        <button class="mobile-search-button">
                             <div class="button-icon"></div>
                         </button>
                     </div>
@@ -205,3 +208,4 @@
 </div>
 <script src="/js/index.js"></script>
 <script src="/js/logout.js"></script>
+<script src="/js/cart.js" defer></script>
