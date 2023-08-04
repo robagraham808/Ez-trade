@@ -4,12 +4,12 @@
                 <img src="/images/home-icon.png" height="35px">
             </a>
             <img src="/images/ez-tradelogo.png" height="35px">
-            <div class="custom-searchbar">
-                <input class="search-bar" type="text" name="search" placeholder="search">
+            <form class="custom-searchbar">
+                <input class="search-bar search-desktop" type="text" name="search" placeholder="search">
                 <button class="search-button">
                     <div class="button-icon"></div>
                 </button>
-            </div>
+            </form>
             
             {{#if logged_in}}
             <a class="profile-icon" href="/profile">
@@ -77,12 +77,12 @@
             </ul>
             <div class="mobile-nav-container">
                 <div class="mobile-nav">
-                    <div class="custom-searchbar-mobile">
-                        <input class="search-bar" type="text" name="search" placeholder="search">
+                    <form class="custom-searchbar-mobile">
+                        <input class="search-bar search-mobile" type="text" name="search" placeholder="search">
                         <button class="mobile-search-button">
                             <div class="button-icon"></div>
                         </button>
-                    </div>
+                    </form>
                     <h2 class="category-label">Categories</h2>
                     <div class="hamburger-menu">
                         <div class="hamburger-bar"></div>
@@ -190,7 +190,9 @@
         {{/each}}
     </section>
     {{else}}
-    <p>No products found.</p>
+    <div style="height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center;">
+    <p style="font-size: 50px;">No products found.</p>
+    </div>
     {{/if}}
 </main>
 <footer id="search-results-footer">
@@ -204,8 +206,16 @@
                 <p>1-800-545-3954</p>
             </div>
         </div>
+          <div class="contact-links">
+                <a href="/post-product">
+                    <img src="/images/post-product.icon.png" height="18px">
+                </a>
+                <p>Post a product</p>
+               
+            </div>
 </footer>
 </div>
 <script src="/js/index.js"></script>
 <script src="/js/logout.js"></script>
-<script src="/js/cart.js" defer></script>
+<script src="/js/cart.js"></script>
+<script src="/js/searchbar.js"></script>

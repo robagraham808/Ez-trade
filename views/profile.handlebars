@@ -4,12 +4,12 @@
                 <img src="/images/home-icon.png" height="35px">
             </a>
             <img src="/images/ez-tradelogo.png" height="35px">
-            <div class="custom-searchbar">
-                <input class="search-bar" type="text" name="search" placeholder="search">
+            <form class="custom-searchbar">
+                <input class="search-bar search-desktop" type="text" name="search" placeholder="search">
                 <button class="search-button">
                     <div class="button-icon"></div>
                 </button>
-            </div>
+            </form>
             
              {{#if logged_in}}
             <a class="profile-icon" href="/profile">
@@ -76,12 +76,12 @@
             </ul>
             <div class="mobile-nav-container">
                 <div class="mobile-nav">
-                    <div class="custom-searchbar-mobile">
-                        <input class="search-bar" type="text" name="search" placeholder="search">
+                     <form class="custom-searchbar-mobile">
+                        <input class="search-bar search-mobile" type="text" name="search" placeholder="search">
                         <button class="mobile-search-button">
                             <div class="button-icon"></div>
                         </button>
-                    </div>
+                    </form>
                     <h2 class="category-label">Categories</h2>
                     <div class="hamburger-menu">
                         <div class="hamburger-bar"></div>
@@ -149,5 +149,33 @@
 
     </section>
 
-     <script src="/js/cart.js" defer></script>
-     <script src="/js/logout.js"></script>
+    <section style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 80%; margin: 2em auto;">
+                {{#each products as |product|}}
+            <div style="width: 45%; height: 150px; display: flex; justify-content: space-between; background-color: #efefef; border: 1px solid black;" class="your-item">
+                     <div class="item-image">
+                    <div class="image-placeholder"
+                        style="background-image: url({{this.image}}); background-repeat: no-repeat; width: 150px; height: 150px; background-size: cover; background-position: center;">
+                    </div>
+                </div>
+                    <div style="display: flex; flex-direction: column; justify-content: space-around; margin-right: 2em;">
+                        <h2>{{this.product_name}}</h2>
+                       
+        
+                        <p>{{this.shortDescription}}</p>
+                        <form id="delete-form" data-id="{{this.id}}">
+                            <button type="submit"  class="remove-item" >remove</button>
+                        
+                        </form>
+                </div>
+</div>
+            
+            {{/each}}
+
+    </section>
+
+    <script src="/js/cart.js"></script>
+    <script src="/js/logout.js"></script>
+    <script src="/js/searchbar.js"></script>
+    <script src="/js/deleteItem.js"></script>
+
+    

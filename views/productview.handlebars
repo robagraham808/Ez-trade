@@ -5,12 +5,12 @@
                 <img src="/images/home-icon.png" height="35px">
             </a>
             <img src="/images/ez-tradelogo.png" height="35px">
-            <div class="custom-searchbar">
-                <input class="search-bar" type="text" name="search" placeholder="search">
+            <form class="custom-searchbar">
+                <input class="search-bar search-desktop" type="text" name="search" placeholder="search">
                 <button class="search-button">
                     <div class="button-icon"></div>
                 </button>
-            </div>
+            </form>
             {{!-- <div class="profile-icon">
                 {{#if logged_in}}
                 <a href="/profile"></a>
@@ -83,12 +83,12 @@
             </ul>
             <div class="mobile-nav-container">
                 <div class="mobile-nav">
-                    <div class="custom-searchbar-mobile">
-                        <input class="search-bar" type="text" name="search" placeholder="search">
+                    <form class="custom-searchbar-mobile">
+                        <input class="search-bar search-mobile" type="text" name="search" placeholder="search">
                         <button class="mobile-search-button">
                             <div class="button-icon"></div>
                         </button>
-                    </div>
+                    </form>
                     <h2 class="category-label">Categories</h2>
                     <div class="hamburger-menu">
                         <div class="hamburger-bar"></div>
@@ -185,3 +185,5 @@
  </div>
     <script src="/js/index.js"></script>
     <script src="/js/cart.js" defer></script>
+    <script src="/js/searchbar.js"></script>
+
