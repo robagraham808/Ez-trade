@@ -2,7 +2,9 @@ const searchBar = document.querySelector('.custom-searchbar');
 const mobileSearchBar = document.querySelector('.custom-searchbar-mobile');
 const searchButton = document.querySelector('.search-button');
 const mobileSearchButton = document.querySelector('.mobile-search-button');
-const input = document.querySelector('.search-bar');
+const input = document.querySelector('.search-desktop');
+const inputMobile = document.querySelector('.search-mobile')
+ 
 
 searchBar.addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -24,9 +26,10 @@ searchBar.addEventListener("submit", async function(event) {
         
 }); 
 
-mobileSearchButton.addEventListener("click", async function() {
+mobileSearchBar.addEventListener("submit", async function(event) {
+    event.preventDefault();
    
-    const userSearch = mobileSearchBar.textContent;
+    const userSearch = inputMobile.value;
     console.log(userSearch);
 
     const response = await fetch(`/searchbar/${userSearch}`, {
@@ -35,7 +38,8 @@ mobileSearchButton.addEventListener("click", async function() {
         });
 
     if (response.ok) {
-    document.location.replace(`/searchbar/${userSearch}`);
+        // console.log('ok!');
+        document.location.replace(`/searchbar/${userSearch}`);
     } else {
     alert(response.statusText);
     }    

@@ -66,8 +66,17 @@ router.get('/profile', withAuth, async (req, res) => {
     
       }
     
+      const productDb = await Product.findAll({
+        where: { user_id:req.session.user_id },
+        include: [{model: User}],
+      });
+
+      const products = productDb.map((product) => product.get({ plain: true }));
+
+      // res.status(200).json(products);
   
       res.render('profile', {
+        products,
         user,
         logged_in: true,
         buyer_id: req.session.user_id,
